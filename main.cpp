@@ -4,8 +4,7 @@
 
 #include <iostream>
 #include <vector>
-#include "EasyBMP/EasyBMP.h"
-
+#include "Converter.h"
 
 
 void showUsage(std::string name);
@@ -17,24 +16,33 @@ int main(int argc, char* argv[])
         return 1;
     }
     std::vector <std::string> sources;
-    std::string destination;
+    std::string filename;
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
         if ((arg == "-h") || (arg == "--help")) {
             showUsage(argv[0]);
             return 0;
-        } else if ((arg == "-d") || (arg == "--destination")) {
-            if (i + 1 < argc) { // Make sure we aren't at the end of argv!
-                destination = argv[i++]; // Increment 'i' so we don't get the argument as the next argv[i].
-            } else { // Uh-oh, there was no argument to the destination option.
-                std::cerr << "--destination option requires one argument." << std::endl;
+        } else if ((arg == "-f") || (arg == "--file")) {
+            if (i + 1 < argc) {
+                filename = argv[++i];
+                sources.push_back(filename.substr(0, filename.find('.')+1));
+                sources.push_back(filename.substr(filename.find('.')+1));
+            } else {
+                std::cerr << "--file option requires one argument." << std::endl;
                 return 1;
             }
         } else {
-            sources.push_back(argv[i]);
+            // Later, for other arguments.
+            sources.push_back("");
+            sources.push_back("");
         }
     }
-//    return move(sources, destination);
+    //Error handling?
+    std::cout << sources[0] << " and " << sources[1] << std::endl;
+    Converter c;
+    c.convertPics(sources);
+    std::string output = c.getASCIIString();
+    std::cout << output << std::endl;
     return 0;
 }
 
@@ -42,6 +50,6 @@ void showUsage(std::string name) {
     std::cerr << "Usage: " << name << " <option(s)> SOURCES"
               << "Options:\n"
               << "\t-h,--help\t\tShow this help message\n"
-              << "\t-d,--destination DESTINATION\tSpecify the destination path"
+              << "\t-f,--file FILE NAME\tSpecify the file name"
               << std::endl;
 }

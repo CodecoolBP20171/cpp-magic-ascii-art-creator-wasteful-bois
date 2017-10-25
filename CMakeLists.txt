@@ -8,6 +8,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES
         EasyBMP/EasyBMP.cpp EasyBMP/EasyBMP.h
         EasyBMP/EasyBMP_BMP.h EasyBMP/EasyBMP_DataStructures.h EasyBMP/EasyBMP_VariousBMPutilities.h
-        main.cpp ParseBMP.cpp ParseBMP.h)
+        main.cpp ParseBMP.cpp ParseBMP.h Converter.cpp Converter.h ParsePng.cpp ParsePng.h)
 
 add_executable(cpp_magic_ascii_art_creator_wasteful_bois ${SOURCE_FILES})

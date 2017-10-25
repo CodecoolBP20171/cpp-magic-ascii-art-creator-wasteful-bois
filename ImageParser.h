@@ -12,10 +12,12 @@ class ImageParser {
 public:
     virtual std::string const getASCIIToString() = 0;
 
+protected:
+    const char const selectCharacter(const int &lightness);
+
 private:
     virtual void convertToGreyscale() = 0;
     virtual void resize(double &scale) = 0;
-    const char const selectCharacter(const int &lightness);
 };
 
 #endif //CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_IMAGEPARSER_H

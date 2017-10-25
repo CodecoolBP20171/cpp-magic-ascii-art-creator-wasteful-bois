@@ -8,14 +8,13 @@
 #include <iostream>
 #include "LodePNG/LodePNG.h"
 #include "ImageParser.h"
+#include "Ascii.h"
 
 class ParsePNG : public ImageParser{
 public:
     ParsePNG(std::string& fileName);
 
     const std::string getASCIIToString() override;
-    void convertToGreyscale() override;
-    void resize(double &scale) override;
 
 private:
     std::vector<unsigned char> image;
@@ -24,6 +23,9 @@ private:
     unsigned height;
 
     void decodePNG();
+
+    void convertToGreyscale() override;
+    void resize(double &scale) override;
 };
 
 

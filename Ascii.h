@@ -8,12 +8,12 @@
 // Not using enum class, because there is a type conflict when retrieving value
 namespace Ascii {
     const char BLACK        = '@';
-    const char CHARCOAL     = '#';
-    const char DARKGRAY     = '8';
-    const char MEDIUMGRAY   = '&';
-    const char MEDIUM       = 'o';
-    const char SLATEGRAY    = '*';
-    const char LIGHTGRAY    = '.';
+    const char DARK_1       = '#';
+    const char DARK_2       = '8';
+    const char MEDIUM_DARK  = '&';
+    const char MEDIUM_LIGHT = 'o';
+    const char LIGHT_2      = '*';
+    const char LIGHT_1      = '.';
     const char WHITE        = ' ';
 }
 

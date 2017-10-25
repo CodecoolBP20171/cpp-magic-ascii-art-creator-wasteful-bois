@@ -1,0 +1,41 @@
+//
+// Created by meszi on 2017.10.25..
+//
+
+#include "ParsePNG.h"
+
+ParsePNG::ParsePNG(std::string &fileName) : fileName(fileName.c_str()) {
+    decodePNG();
+}
+
+void ParsePNG::decodePNG() {
+    unsigned error = lodepng::decode(image, width, height, fileName);
+
+    if (error) {
+        std::cout << "Error while decoding PNG image:" << std::endl
+                  << error << ": " << lodepng_error_text(error) << std::endl;
+    } else {
+        std::cout << fileName << " = width: " << width << " height: " << height << std::endl;
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                std::cout << image[(y * width) + x];
+            }
+            std::cout << std::endl;
+        }
+    }
+
+
+}
+
+// ImageParser overrides
+const std::string ParsePNG::getASCIIToString() {
+    return nullptr;
+}
+
+void ParsePNG::convertToGreyscale() {
+
+}
+
+void ParsePNG::resize(double &scale) {
+
+}

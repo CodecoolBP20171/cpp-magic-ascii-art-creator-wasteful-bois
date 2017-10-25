@@ -1,3 +1,4 @@
+/*
 //
 // Created by bekor on 10/24/17.
 //
@@ -44,4 +45,4 @@ void showUsage(std::string name) {
               << "\t-h,--help\t\tShow this help message\n"
               << "\t-d,--destination DESTINATION\tSpecify the destination path"
               << std::endl;
-}
+}*/

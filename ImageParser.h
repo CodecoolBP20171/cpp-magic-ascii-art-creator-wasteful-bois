@@ -11,9 +11,10 @@
 class ImageParser {
 public:
     virtual std::string const getASCIIToString() = 0;
+    virtual void saveASCIIToFile(const std::string &newFileName) = 0;
 
 protected:
-    const char const selectCharacter(const int &lightness);
+    virtual const char const selectCharacter(const int &lightness) final;
 
 private:
     virtual void convertToGreyscale() = 0;

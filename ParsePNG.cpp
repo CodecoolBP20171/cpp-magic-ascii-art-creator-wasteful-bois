@@ -33,6 +33,10 @@ const std::string ParsePNG::getASCIIToString() {
     return returnValue;
 }
 
+void ParsePNG::saveASCIIToFile(const std::string &newFileName) {
+
+}
+
 void ParsePNG::convertToGreyscale() {
 
 }

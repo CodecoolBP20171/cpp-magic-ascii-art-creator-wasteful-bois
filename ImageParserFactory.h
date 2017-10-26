@@ -9,14 +9,17 @@
 // Included in other includes
 // #include "ImageParser.h"
 #include "ParseBMP.h"
+#include "ParseJPG.h"
 #include "ParsePNG.h"
+#include "ImageFactoryExceptions.h"
 
 class ImageParserFactory {
 public:
     ImageParser* createImageParser(const std::string& fileName);
+    ImageParser* createImageParser(const std::string& fileName, const std::string& fileExtension);
 
 private:
-    bool isExistingFile(const std::string& fileName);
+    bool fileExists(const std::string &fileName);
 };
 
 

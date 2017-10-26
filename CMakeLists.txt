@@ -16,6 +16,6 @@ set(SOURCE_FILES
         ImageParser.cpp ImageParser.h
         ImageParserFactory.cpp ImageParserFactory.h
         ParseJPG.cpp ParseJPG.h
-        NanoJPG/nanojpeg.h NanoJPG/nanojpeg.c)
+        NanoJPG/nanojpeg.h NanoJPG/nanojpeg.c ImageFactoryExceptions.h)
 
 add_executable(cpp_magic_ascii_art_creator_wasteful_bois ${SOURCE_FILES})

@@ -5,25 +5,39 @@
 #include "ImageParserFactory.h"
 
 ImageParser *ImageParserFactory::createImageParser(const std::string &fileName) {
-    if (!isExistingFile(fileName)) {
-        throw std::invalid_argument("File not found: " + fileName + "!");
-    }
+    if (!fileExists(fileName)) throw factory::FileNotFoundException(fileName);
+
     std::string nonConstFileName = fileName;
-    // Refactor ParseBMP
-    if (fileName.find(".bmp") == fileName.length() - 4) return nullptr;
-    if (fileName.find(".png") == fileName.length() - 4) return new ParsePNG(nonConstFileName);
+    // TODO: Refactor ParseBMP
+    if (fileName.rfind(".bmp") == fileName.length() - 4) return nullptr;
+    if (fileName.rfind(".png") == fileName.length() - 4) return new ParsePNG(nonConstFileName);
     if (
-            fileName.find(".jpg")  == fileName.length() - 4 ||
-            fileName.find(".jpeg") == fileName.length() - 5
+            fileName.rfind(".jpg")  == fileName.length() - 4 ||
+            fileName.rfind(".jpeg") == fileName.length() - 5
     ) {
-//        return new ParseJPG(fileName);
-        return nullptr;
+        return new ParseJPG(nonConstFileName);
     }
-    return nullptr;
+    throw factory::UnsupportedFileExtension(fileName);
 }
 
-bool ImageParserFactory::isExistingFile(const std::string &fileName) {
-    // If no extension is given, try to open file with all three extensions, if all fail, return false
-    // If extension is given, only try with that.
+ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, const std::string &fileExtension) {
+    if (!fileExists(fileName)) throw factory::FileNotFoundException(fileName);
+
+    std::string nonConstFileName = fileName;
+    // TODO: Refactor ParseBMP
+    if (fileExtension == "bmp") return nullptr;
+    if (fileExtension == "png") return new ParsePNG(nonConstFileName);
+    if (fileExtension == "jpg" || fileExtension == "jpeg") return new ParseJPG(nonConstFileName);
+    throw factory::UnsupportedFileExtension(fileName);
+
+}
+
+bool ImageParserFactory::fileExists(const std::string &fileName) {
+    std::ifstream file;
+    file.open(fileName);
+    if (file.is_open()) {
+        file.close();
+        return true;
+    }
     return false;
 }

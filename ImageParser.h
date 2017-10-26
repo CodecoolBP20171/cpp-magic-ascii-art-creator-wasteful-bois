@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include "Ascii.h"
+#include "ImageParserExceptions.h"
 
 class ImageParser {
 public:

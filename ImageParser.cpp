@@ -17,5 +17,12 @@ const char ImageParser::selectCharacter(const int &lightness) {
 }
 
 void ImageParser::saveASCIIToFile(const std::string &newFileName) {
-
+    std::ofstream newFile(newFileName);
+    if (newFile.is_open()) {
+        newFile << getASCIIToString();
+        newFile.close();
+    } else {
+        std::string nonConst(newFileName);
+        throw imageExcepction::BadFileWrite(nonConst);
+    }
 }

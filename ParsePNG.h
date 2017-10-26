@@ -12,7 +12,7 @@
 
 class ParsePNG : public ImageParser{
 public:
-    ParsePNG(std::string& fileName);
+    ParsePNG(std::string& fileName, bool& color, float& scale) : ImageParser(color, scale) {}
 
     const std::string getASCIIToString() override;
 

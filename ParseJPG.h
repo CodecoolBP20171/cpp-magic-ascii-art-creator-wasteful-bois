@@ -16,7 +16,7 @@ extern "C" {
 
 class ParseJPG: public ImageParser {
 public:
-    ParseJPG(std::string& fileName);
+    ParseJPG(std::string& fileName, bool& color, float& scale) : ImageParser(color, scale) {}
 
     const std::string getASCIIToString() override;
 

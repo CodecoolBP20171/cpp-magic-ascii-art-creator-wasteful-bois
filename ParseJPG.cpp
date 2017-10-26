@@ -60,14 +60,10 @@ const std::string ParseJPG::getASCIIToString() {
     return returnValue;
 }
 
-void ParseJPG::saveASCIIToFile(const std::string &newFileName) {
-
-}
-
 void ParseJPG::convertToGreyscale() {
 
 }
 
-void ParseJPG::resize(double &scale) {
+void ParseJPG::resize(float &scale) {
 
 }

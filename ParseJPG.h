@@ -19,7 +19,6 @@ public:
     ParseJPG(std::string& fileName);
 
     const std::string getASCIIToString() override;
-    void saveASCIIToFile(const std::string &newFileName) override;
 
 private:
     unsigned char *image;
@@ -30,7 +29,7 @@ private:
     void decodeJPG();
 
     void convertToGreyscale() override;
-    void resize(double &scale) override;
+    void resize(float &scale) override;
 };
 
 

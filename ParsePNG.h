@@ -15,7 +15,6 @@ public:
     ParsePNG(std::string& fileName);
 
     const std::string getASCIIToString() override;
-    void saveASCIIToFile(const std::string &newFileName) override;
 
 private:
     std::vector<unsigned char> image;
@@ -26,7 +25,7 @@ private:
     void decodePNG();
 
     void convertToGreyscale() override;
-    void resize(double &scale) override;
+    void resize(float &scale) override;
 };
 
 

@@ -4,7 +4,7 @@
 
 #include "ParseBMP.h"
 
-void ParseBMP::ScaleBMP(std::string inputImageName) {
+void ParseBMP::ScaleBMP(std::string &asciiString, std::string &inputImageName) {
     const char * c = inputImageName.c_str();
     BMP Text;
     Text.ReadFromFile(c);
@@ -12,11 +12,11 @@ void ParseBMP::ScaleBMP(std::string inputImageName) {
     CreateGrayscaleColorTable(Text);
     std::cout << "colors: " << Text.TellNumberOfColors() << std::endl;
     Rescale(Text, 'p', 40);
-    PrintCharTable( Text );
+    PrintCharTable(asciiString, Text );
 }
 
 // Should be shortened using modulo, and chosing char from a list or something.
-void ParseBMP::PrintCharTable( BMP& InputImage )
+void ParseBMP::PrintCharTable(std::string &asciiString, BMP& InputImage )
 {
     for( int j=0 ; j < InputImage.TellHeight() ; j ++)
     {
@@ -59,8 +59,8 @@ void ParseBMP::PrintCharTable( BMP& InputImage )
                 InputImage(i,j)->Blue = WHITE;
                 InputImage(i,j)->Green = WHITE;
             }
-            std::cout<< InputImage(i,j)->Red;
+            asciiString += InputImage(i,j)->Red;
         }
-        std::cout << std::endl;
+        asciiString += "\n";
     }
 }

@@ -21,7 +21,7 @@ public:
     const std::string getASCIIToString() override;
 
 private:
-    unsigned char *image;
+    std::vector<unsigned char> image;
     const char* fileName;
     int width;
     int height;

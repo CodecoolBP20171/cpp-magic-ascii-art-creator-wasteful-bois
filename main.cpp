@@ -2,10 +2,7 @@
 // Created by bekor on 10/24/17.
 //
 
-#include <iostream>
-#include <vector>
-#include "ImageParserFactory.h"
-
+#include "ImageParsers/ImageParserFactory.h"
 
 void showUsage(const char* name);
 
@@ -45,7 +42,6 @@ int main(int argc, char* argv[])
             }
         }
     }
-    //Error handling?
 
     if (1 < scaleFactor) {
         std::cerr << "Can't upscale images! Selected scale: " + std::to_string(scaleFactor) << std::endl;

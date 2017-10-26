@@ -6,10 +6,10 @@
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_IMAGEPARSER_H
 
 #include <fstream>
-#include <math.h>
+#include <cmath>
 #include <string>
-#include "Ascii.h"
-#include "Exceptions.h"
+#include "../Ascii.h"
+#include "../Exceptions.h"
 
 class ImageParser {
 public:
@@ -22,7 +22,7 @@ public:
 protected:
     const bool color;
     const float scale;
-    virtual const char selectCharacter(const int &lightness) final;
+    const char selectCharacter(const int &lightness);
 
 private:
     virtual void convertToGreyscale() = 0;

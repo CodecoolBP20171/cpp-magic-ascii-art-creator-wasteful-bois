@@ -2,7 +2,7 @@
 // Created by Joe Bekor on 25/10/2017.
 //
 extern "C" {
-    #include "NanoJPG/nanojpeg.h"
+    #include "../NanoJPG/nanojpeg.h"
 }
 #ifndef CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEJPG_H
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEJPG_H
@@ -12,7 +12,7 @@ extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 #include "ImageParser.h"
-#include "Ascii.h"
+#include "../Ascii.h"
 
 class ParseJPG: public ImageParser {
 public:

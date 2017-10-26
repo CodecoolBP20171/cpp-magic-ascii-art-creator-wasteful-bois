@@ -5,9 +5,7 @@
 #ifndef CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEBMP_H
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEBMP_H
 
-
-#include <vector>
-#include "EasyBMP/EasyBMP.h"
+#include "../EasyBMP/EasyBMP.h"
 #include "ImageParser.h"
 
 class ParseBMP : public ImageParser{

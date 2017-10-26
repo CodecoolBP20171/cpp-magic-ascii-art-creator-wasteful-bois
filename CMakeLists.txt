@@ -3,7 +3,7 @@ project(cpp_magic_ascii_art_creator_wasteful_bois)
 
 set(CMAKE_CXX_STANDARD 11)
 
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wno-error=unused-parameter -Werror=unused-variable")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wno-error=unused-parameter -Wno-error=unused-variable -Wno-error=ignored-qualifiers")
 
 set(SOURCE_FILES
         EasyBMP/EasyBMP.cpp EasyBMP/EasyBMP.h
@@ -11,11 +11,11 @@ set(SOURCE_FILES
         LodePNG/LodePNG.cpp LodePNG/LodePNG.h
         NanoJPG/nanojpeg.h NanoJPG/nanojpeg.c
         Ascii.h
-        ImageParser.cpp ImageParser.h
-        ImageParserFactory.cpp ImageParserFactory.h
-        ParseJPG.cpp ParseJPG.h
-        ParseBMP.cpp ParseBMP.h
-        ParsePNG.cpp ParsePNG.h
+        ImageParsers/ImageParser.cpp ImageParsers/ImageParser.h
+        ImageParsers/ImageParserFactory.cpp ImageParsers/ImageParserFactory.h
+        ImageParsers/ParseJPG.cpp ImageParsers/ParseJPG.h
+        ImageParsers/ParseBMP.cpp ImageParsers/ParseBMP.h
+        ImageParsers/ParsePNG.cpp ImageParsers/ParsePNG.h
         main.cpp
         Exceptions.h)
 

@@ -6,9 +6,8 @@
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEPNG_H
 
 #include <iostream>
-#include "LodePNG/LodePNG.h"
+#include "../LodePNG/LodePNG.h"
 #include "ImageParser.h"
-#include "Ascii.h"
 
 class ParsePNG : public ImageParser{
 public:
@@ -26,6 +25,8 @@ private:
 
     void convertToGreyscale() override;
     void resize() override;
+    bool reachableField(int x, int y) const;
+    unsigned char calculateChunk(int x, int diffX, int y, int diffY, int dev);
 };
 
 

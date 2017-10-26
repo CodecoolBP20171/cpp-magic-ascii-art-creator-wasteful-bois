@@ -6,12 +6,10 @@
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_IMAGEPARSERFACTORY_H
 
 #include <stdexcept>
-// Included in other includes
-// #include "ImageParser.h"
 #include "ParseBMP.h"
 #include "ParseJPG.h"
 #include "ParsePNG.h"
-#include "Exceptions.h"
+#include "../Exceptions.h"
 
 class ImageParserFactory {
 public:

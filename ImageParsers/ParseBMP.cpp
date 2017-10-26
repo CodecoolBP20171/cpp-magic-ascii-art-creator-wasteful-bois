@@ -20,8 +20,8 @@ void ParseBMP::decodeBMP() {
 
 const std::string ParseBMP::getASCIIToString() {
     std::string returnValue;
-    for( int j=0 ; j < height ; j ++) {
-        for (int i = 0; i <width; i++) {
+    for(unsigned int j=0 ; j < height ; j ++) {
+        for (unsigned int i = 0; i <width; i++) {
             returnValue += selectCharacter(image(i,j)->Red);
         }
         returnValue += "\n";
@@ -34,7 +34,7 @@ void ParseBMP::convertToGreyscale() {
 }
 
 void ParseBMP::resize() {
-    int reScale = (int)(scale*100);
+    auto reScale = (int)(scale*100);
     Rescale(image, 'p', reScale);
     height = static_cast<unsigned int>(image.TellHeight());
     width = static_cast<unsigned int>(image.TellWidth());

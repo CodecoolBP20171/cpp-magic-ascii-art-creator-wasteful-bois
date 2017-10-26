@@ -14,7 +14,7 @@ public:
     virtual void saveASCIIToFile(const std::string &newFileName) = 0;
 
 protected:
-    virtual const char const selectCharacter(const int &lightness) final;
+    virtual const char selectCharacter(const int &lightness) final;
 
 private:
     virtual void convertToGreyscale() = 0;

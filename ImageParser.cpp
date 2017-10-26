@@ -4,7 +4,7 @@
 
 #include "ImageParser.h"
 
-const char const ImageParser::selectCharacter(const int &lightness) {
+const char ImageParser::selectCharacter(const int &lightness) {
     const int threshold = 255 / 8;
     if      (lightness < 1 * threshold) return Ascii::BLACK;
     else if (lightness < 2 * threshold) return Ascii::DARK_1;

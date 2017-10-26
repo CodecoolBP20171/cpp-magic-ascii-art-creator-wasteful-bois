@@ -15,8 +15,9 @@
 
 class ImageParserFactory {
 public:
-    ImageParser* createImageParser(const std::string& fileName);
-    ImageParser* createImageParser(const std::string& fileName, const std::string& fileExtension);
+    ImageParser *createImageParser(const std::string &fileName, bool &color, float &scale);
+    ImageParser *
+    createImageParser(const std::string &fileName, const std::string &fileExtension, bool &color, float &scale);
 
 private:
     bool fileExists(const std::string &fileName);

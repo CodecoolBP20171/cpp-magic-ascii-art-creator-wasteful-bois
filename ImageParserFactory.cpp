@@ -4,30 +4,30 @@
 
 #include "ImageParserFactory.h"
 
-ImageParser *ImageParserFactory::createImageParser(const std::string &fileName) {
+ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, bool &color, float &scale) {
     if (!fileExists(fileName)) throw factory::FileNotFoundException(fileName);
 
     std::string nonConstFileName = fileName;
     // TODO: Refactor ParseBMP
     if (fileName.rfind(".bmp") == fileName.length() - 4) return nullptr;
-    if (fileName.rfind(".png") == fileName.length() - 4) return new ParsePNG(nonConstFileName);
+    if (fileName.rfind(".png") == fileName.length() - 4) return new ParsePNG(nonConstFileName, color, scale);
     if (
             fileName.rfind(".jpg")  == fileName.length() - 4 ||
             fileName.rfind(".jpeg") == fileName.length() - 5
     ) {
-        return new ParseJPG(nonConstFileName);
+        return new ParseJPG(nonConstFileName, color, scale);
     }
     throw factory::UnsupportedFileExtension(fileName);
 }
 
-ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, const std::string &fileExtension) {
+ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, const std::string &fileExtension, bool &color, float &scale) {
     if (!fileExists(fileName)) throw factory::FileNotFoundException(fileName);
 
     std::string nonConstFileName = fileName;
     // TODO: Refactor ParseBMP
     if (fileExtension == "bmp") return nullptr;
-    if (fileExtension == "png") return new ParsePNG(nonConstFileName);
-    if (fileExtension == "jpg" || fileExtension == "jpeg") return new ParseJPG(nonConstFileName);
+    if (fileExtension == "png") return new ParsePNG(nonConstFileName, color, scale);
+    if (fileExtension == "jpg" || fileExtension == "jpeg") return new ParseJPG(nonConstFileName, color, scale);
     throw factory::UnsupportedFileExtension(fileName);
 
 }

@@ -4,7 +4,8 @@
 
 #include "ParsePNG.h"
 
-ParsePNG::ParsePNG(std::string &fileName) : fileName(fileName.c_str()) {
+ParsePNG::ParsePNG(std::string& fileName, bool& color, float& scale)
+        : ImageParser(color, scale), fileName(fileName.c_str()) {
     decodePNG();
 }
 

@@ -6,25 +6,26 @@
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEBMP_H
 
 
+#include <vector>
 #include "EasyBMP/EasyBMP.h"
+#include "ImageParser.h"
 
-const char BLACK = '@';
-const char CHARCOAL = '#';
-const char DARKGRAY = '8';
-const char MEDIUMGRAY = '&';
-const char MEDIUM = 'o';
-const char GRAY = ':';
-const char SLATEGRAY = '*';
-const char LIGHTGRAY = '.';
-const char WHITE = ' ';
-
-class ParseBMP {
-
+class ParseBMP : public ImageParser{
 public:
-    void ScaleBMP(std::string &asciiString, std::string &inputImageName);
-    void PrintCharTable(std::string &asciiString, BMP& InputImage );
+    ParseBMP(const std::string &fileName, bool &color, float &scale);
+
+    const std::string getASCIIToString() override;
 
 private:
+    BMP image;
+    const char* fileName;
+    unsigned width;
+    unsigned height;
+
+    void decodeBMP();
+
+    void convertToGreyscale() override;
+    void resize(float &scale) override;
 
 };
 

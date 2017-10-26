@@ -9,7 +9,7 @@ ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, 
 
     std::string nonConstFileName = fileName;
     // TODO: Refactor ParseBMP
-    if (fileName.rfind(".bmp") == fileName.length() - 4) return nullptr;
+    if (fileName.rfind(".bmp") == fileName.length() - 4) return new ParseBMP(nonConstFileName, color, scale);
     if (fileName.rfind(".png") == fileName.length() - 4) return new ParsePNG(nonConstFileName, color, scale);
     if (
             fileName.rfind(".jpg")  == fileName.length() - 4 ||
@@ -25,7 +25,7 @@ ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, 
 
     std::string nonConstFileName = fileName;
     // TODO: Refactor ParseBMP
-    if (fileExtension == "bmp") return nullptr;
+    if (fileExtension == "bmp") return new ParseBMP(nonConstFileName, color, scale);
     if (fileExtension == "png") return new ParsePNG(nonConstFileName, color, scale);
     if (fileExtension == "jpg" || fileExtension == "jpeg") return new ParseJPG(nonConstFileName, color, scale);
     throw factory::UnsupportedFileExtension(fileName);

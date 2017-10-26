@@ -4,7 +4,7 @@
 
 #include "ParseJPG.h"
 
-ParseJPG::ParseJPG(std::string &fileName): fileName(fileName.c_str()) {
+ParseJPG::ParseJPG(std::string& fileName, bool& color, float& scale): ImageParser(color, scale), fileName(fileName.c_str()) {
     decodeJPG();
 }
 
@@ -34,7 +34,7 @@ void ParseJPG::decodeJPG() {
 
     njInit();
 
-    std::cout << njDecode(buffer, result) << std::endl;
+    std::cout << njDecode(buffer, static_cast<const int>(result)) << std::endl;
     width =  njGetWidth();
     height = njGetHeight();
     image = njGetImage();

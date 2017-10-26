@@ -5,9 +5,9 @@
 #ifndef CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEBMP_H
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_PARSEBMP_H
 
-#include <iostream>
-#include <string>
+
 #include "EasyBMP/EasyBMP.h"
+
 const char BLACK = '@';
 const char CHARCOAL = '#';
 const char DARKGRAY = '8';
@@ -21,8 +21,11 @@ const char WHITE = ' ';
 class ParseBMP {
 
 public:
-    void ScaleBMP(std::string inputImageName);
-    void PrintCharTable( BMP& InputImage );
+    void ScaleBMP(std::string &asciiString, std::string &inputImageName);
+    void PrintCharTable(std::string &asciiString, BMP& InputImage );
+
+private:
+
 };
 
 

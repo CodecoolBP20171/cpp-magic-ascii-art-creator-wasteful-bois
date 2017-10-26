@@ -15,3 +15,7 @@ const char ImageParser::selectCharacter(const int &lightness) {
     else if (lightness < 7 * threshold) return Ascii::LIGHT_1;
     return Ascii::WHITE;
 }
+
+void ImageParser::saveASCIIToFile(const std::string &newFileName) {
+
+}

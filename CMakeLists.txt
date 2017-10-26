@@ -16,6 +16,8 @@ set(SOURCE_FILES
         ParseJPG.cpp ParseJPG.h
         ParseBMP.cpp ParseBMP.h
         ParsePNG.cpp ParsePNG.h
-        main.cpp)
+        main.cpp
+        ImageFactoryExceptions.h)
+
 
 add_executable(cpp_magic_ascii_art_creator_wasteful_bois ${SOURCE_FILES})

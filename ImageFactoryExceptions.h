@@ -12,7 +12,7 @@ namespace factory {
     public:
         FileNotFoundException(const std::string &filename) : fileName(fileName) {}
 
-        const char *what() const override {
+        virtual const char* what() const noexcept {
             std::string str("File not found: ");
             str += fileName;
             str += "!";
@@ -27,7 +27,7 @@ namespace factory {
     public:
         UnsupportedFileExtension(const std::string &fileName) : fileName(fileName) {}
 
-        const char *what() const override {
+        virtual const char* what() const noexcept{
             std::string str("File extension not supported: ");
             str += fileName;
             str += "!";

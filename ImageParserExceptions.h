@@ -13,7 +13,7 @@ namespace imageExcepction {
     public:
         BadFileWrite(std::string& fileName) : fileName(fileName) {}
 
-        const char *what() const override {
+        virtual const char* what() const noexcept{
             std::string str("Cannot write to file: ");
             str += fileName;
             str += "!";

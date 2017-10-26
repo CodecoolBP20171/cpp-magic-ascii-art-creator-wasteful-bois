@@ -21,7 +21,7 @@ public:
     const std::string getASCIIToString() override;
 
 private:
-    std::vector<unsigned char> image;
+    unsigned char* image;
     const char* fileName;
     int width;
     int height;
@@ -30,6 +30,8 @@ private:
 
     void convertToGreyscale() override;
     void resize() override;
+    unsigned char calculateChunk(int x, int diffX, int y, int diffY, int dev);
+    bool reachableField(int x, int y) const;
 };
 
 

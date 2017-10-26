@@ -7,13 +7,15 @@
 ParseBMP::ParseBMP(const std::string &fileName, bool &color, float &scale)
         : ImageParser(color, scale), fileName(fileName.c_str())   {
     decodeBMP();
+    if(color) convertToGreyscale();
+    if(scale != 1) resize();
 }
 
 void ParseBMP::decodeBMP() {
     image.ReadFromFile(fileName);
     image.SetBitDepth(8);
-    height = image.TellHeight();
-    width = image.TellWidth();
+    height = static_cast<unsigned int>(image.TellHeight());
+    width = static_cast<unsigned int>(image.TellWidth());
 }
 
 const std::string ParseBMP::getASCIIToString() {
@@ -32,5 +34,8 @@ void ParseBMP::convertToGreyscale() {
 }
 
 void ParseBMP::resize() {
-    Rescale(image, 'p', (int)scale*10);
+    int reScale = (int)(scale*100);
+    Rescale(image, 'p', reScale);
+    height = static_cast<unsigned int>(image.TellHeight());
+    width = static_cast<unsigned int>(image.TellWidth());
 }

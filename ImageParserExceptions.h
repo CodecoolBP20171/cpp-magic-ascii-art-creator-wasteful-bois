@@ -11,13 +11,12 @@
 namespace imageExcepction {
     class BadFileWrite : public std::exception {
     public:
-        BadFileWrite(std::string& fileName) : fileName(fileName) {}
+        BadFileWrite(std::string& filename) {
+            fileName = "Cannot write to file: " + filename + " !";
+        }
 
         virtual const char* what() const noexcept{
-            std::string str("Cannot write to file: ");
-            str += fileName;
-            str += "!";
-            return str.c_str();
+            return fileName.c_str();
         }
 
     private:

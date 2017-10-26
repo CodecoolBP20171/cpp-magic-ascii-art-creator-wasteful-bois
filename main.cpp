@@ -50,14 +50,15 @@ int main(int argc, char* argv[])
     ImageParserFactory imageFactory;
     // TODO: other arguments!!!
     ImageParser* imageParser = imageFactory.createImageParser(filename, fileType, fileColored, scaleFactor);
-    imageParser->getASCIIToString();
-    imageParser->saveASCIIToFile("text.txt");
+    std::cout << imageParser->getASCIIToString();
+    imageParser->saveASCIIToFile("../test.txt");
+    delete imageParser;
 
     return 0;
 }
 
 void showUsage(const char* name) {
-    std::cerr << "Usage: " << &name << " <option(s)> SOURCES"
+    std::cerr << "Usage: " << name << " <option(s)>\n"
               << "Options:\n"
               << "\t-h,--help\t\t\t| Show this help message\n"
               << "\t-f,--file FILE NAME\t| Specify the file name\n"

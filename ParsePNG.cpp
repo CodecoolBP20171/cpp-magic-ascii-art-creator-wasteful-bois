@@ -24,6 +24,9 @@ const std::string ParsePNG::getASCIIToString() {
     std::string returnValue;
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
+            // Gets the red channel of each pixel, this is sufficient,
+            // since all color images' red channel has been updated to contain the
+            // lightness value of that pixel
             returnValue += selectCharacter(image[y * width * 4 + x * 4]);
         }
         returnValue += "\n";

@@ -47,6 +47,12 @@ int main(int argc, char* argv[])
     }
     //Error handling?
 
+    if (1 < scaleFactor) {
+        std::cerr << "Can't upscale images! Selected scale: " + std::to_string(scaleFactor) << std::endl;
+        showUsage(argv[0]);
+        return 1;
+    }
+
     ImageParserFactory imageFactory;
     ImageParser *imageParser;
     try {
@@ -61,7 +67,7 @@ int main(int argc, char* argv[])
     std::cout << imageParser->getASCIIToString();
     try {
         imageParser->saveASCIIToFile("../test.txt");
-    } catch (imageExcepction::BadFileWrite& e) {
+    } catch (parser::BadFileWrite& e) {
         std::cerr << e.what() << std::endl;
     }
     delete imageParser;

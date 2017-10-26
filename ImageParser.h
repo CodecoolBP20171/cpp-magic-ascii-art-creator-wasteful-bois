@@ -9,7 +9,7 @@
 #include <math.h>
 #include <string>
 #include "Ascii.h"
-#include "ImageParserExceptions.h"
+#include "Exceptions.h"
 
 class ImageParser {
 public:

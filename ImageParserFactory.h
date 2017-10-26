@@ -11,7 +11,7 @@
 #include "ParseBMP.h"
 #include "ParseJPG.h"
 #include "ParsePNG.h"
-#include "ImageFactoryExceptions.h"
+#include "Exceptions.h"
 
 class ImageParserFactory {
 public:

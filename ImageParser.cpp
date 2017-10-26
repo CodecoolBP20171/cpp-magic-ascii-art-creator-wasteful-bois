@@ -31,6 +31,6 @@ void ImageParser::saveASCIIToFile(const std::string &newFileName) {
         newFile.close();
     } else {
         std::string nonConst(newFileName);
-        throw imageExcepction::BadFileWrite(nonConst);
+        throw parser::BadFileWrite(nonConst);
     }
 }

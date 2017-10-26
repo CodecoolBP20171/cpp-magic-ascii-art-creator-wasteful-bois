@@ -17,7 +17,7 @@ ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, 
     ) {
         return new ParseJPG(nonConstFileName, color, scale);
     }
-    throw factory::UnsupportedFileExtension(fileName);
+    throw factory::UnsupportedExtension(fileName);
 }
 
 ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, const std::string &fileExtension, bool &color, float &scale) {
@@ -28,7 +28,7 @@ ImageParser *ImageParserFactory::createImageParser(const std::string &fileName, 
     if (fileExtension == "bmp") return new ParseBMP(nonConstFileName, color, scale);
     if (fileExtension == "png") return new ParsePNG(nonConstFileName, color, scale);
     if (fileExtension == "jpg" || fileExtension == "jpeg") return new ParseJPG(nonConstFileName, color, scale);
-    throw factory::UnsupportedFileExtension(fileName);
+    throw factory::UnsupportedExtension(fileName);
 
 }
 

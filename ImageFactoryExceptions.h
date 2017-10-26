@@ -22,9 +22,9 @@ namespace factory {
         std::string fileName;
     };
 
-    class UnsupportedFileExtension : public std::exception {
+    class UnsupportedExtension : public std::exception {
     public:
-        UnsupportedFileExtension(const std::string &filename) {
+        UnsupportedExtension(const std::string &filename) {
             fileName = "Unsupported extension type: " + filename + " !";
         }
 

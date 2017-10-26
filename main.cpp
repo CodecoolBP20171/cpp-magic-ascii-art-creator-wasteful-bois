@@ -48,10 +48,22 @@ int main(int argc, char* argv[])
     //Error handling?
 
     ImageParserFactory imageFactory;
-    // TODO: other arguments!!!
-    ImageParser* imageParser = imageFactory.createImageParser(filename, fileType, fileColored, scaleFactor);
+    ImageParser *imageParser;
+    try {
+        imageParser = imageFactory.createImageParser(filename, fileType, fileColored, scaleFactor);
+    } catch (factory::FileNotFoundException& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    } catch (factory::UnsupportedExtension& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
     std::cout << imageParser->getASCIIToString();
-    imageParser->saveASCIIToFile("../test.txt");
+    try {
+        imageParser->saveASCIIToFile("../test.txt");
+    } catch (imageExcepction::BadFileWrite& e) {
+        std::cerr << e.what() << std::endl;
+    }
     delete imageParser;
 
     return 0;

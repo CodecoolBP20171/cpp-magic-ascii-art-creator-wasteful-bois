@@ -13,14 +13,14 @@
 
 class ImageParser {
 public:
-    ImageParser() : isColored(false), scale(1.0) {}
-    ImageParser(bool& isColored, float& scale) : isColored(isColored), scale(scale) {}
+    ImageParser() : color(false), scale(1.0) {}
+    ImageParser(bool& isColored, float& scale) : color(isColored), scale(scale) {}
 
     virtual std::string const getASCIIToString() = 0;
     virtual void saveASCIIToFile(const std::string &newFileName) final;
 
 protected:
-    bool isColored;
+    bool color;
     float scale;
     virtual const char selectCharacter(const int &lightness) final;
 

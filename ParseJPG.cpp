@@ -73,6 +73,6 @@ void ParseJPG::convertToGreyscale() {
     }
 }
 
-void ParseJPG::resize(float &scale) {
+void ParseJPG::resize() {
 
 }

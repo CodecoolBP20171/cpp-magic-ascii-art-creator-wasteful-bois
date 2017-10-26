@@ -25,7 +25,7 @@ private:
     void decodeBMP();
 
     void convertToGreyscale() override;
-    void resize(float &scale) override;
+    void resize() override;
 
 };
 

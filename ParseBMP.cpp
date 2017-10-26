@@ -31,6 +31,6 @@ void ParseBMP::convertToGreyscale() {
     CreateGrayscaleColorTable(image);
 }
 
-void ParseBMP::resize(float &scale) {
+void ParseBMP::resize() {
     Rescale(image, 'p', (int)scale*10);
 }

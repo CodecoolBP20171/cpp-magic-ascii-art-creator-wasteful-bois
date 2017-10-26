@@ -8,6 +8,7 @@ ParsePNG::ParsePNG(std::string& fileName, bool& color, float& scale)
         : ImageParser(color, scale), fileName(fileName.c_str()) {
     decodePNG();
     if (color) convertToGreyscale();
+    if (scale != 1) resize();
 }
 
 void ParsePNG::decodePNG() {
@@ -44,6 +45,6 @@ void ParsePNG::convertToGreyscale() {
     }
 }
 
-void ParsePNG::resize(float &scale) {
+void ParsePNG::resize() {
 
 }

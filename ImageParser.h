@@ -20,13 +20,13 @@ public:
     virtual void saveASCIIToFile(const std::string &newFileName) final;
 
 protected:
-    bool color;
-    float scale;
+    const bool color;
+    const float scale;
     virtual const char selectCharacter(const int &lightness) final;
 
 private:
     virtual void convertToGreyscale() = 0;
-    virtual void resize(float &scale) = 0;
+    virtual void resize() = 0;
 };
 
 #endif //CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_IMAGEPARSER_H

@@ -9,11 +9,13 @@ set(SOURCE_FILES
         EasyBMP/EasyBMP.cpp EasyBMP/EasyBMP.h
         EasyBMP/EasyBMP_BMP.h EasyBMP/EasyBMP_DataStructures.h EasyBMP/EasyBMP_VariousBMPutilities.h
         LodePNG/LodePNG.cpp LodePNG/LodePNG.h
+        NanoJPG/nanojpeg.h NanoJPG/nanojpeg.c
         Ascii.h
         ImageParser.cpp ImageParser.h
         ImageParserFactory.cpp ImageParserFactory.h
         ParseJPG.cpp ParseJPG.h
-        NanoJPG/nanojpeg.h NanoJPG/nanojpeg.c)
-        main.cpp ParseBMP.cpp ParseBMP.h Converter.cpp Converter.h ParsePng.cpp ParsePng.h)
+        ParseBMP.cpp ParseBMP.h
+        ParsePNG.cpp ParsePNG.h
+        main.cpp)
 
 add_executable(cpp_magic_ascii_art_creator_wasteful_bois ${SOURCE_FILES})

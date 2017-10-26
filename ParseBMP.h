@@ -7,7 +7,6 @@
 
 
 #include "EasyBMP/EasyBMP.h"
-#include "Converter.h"
 
 const char BLACK = '@';
 const char CHARCOAL = '#';

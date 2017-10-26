@@ -4,19 +4,23 @@
 
 #include <iostream>
 #include <vector>
-#include "Converter.h"
+#include "ImageParserFactory.h"
 
 
-void showUsage(std::string name);
-// Still template
+void showUsage(const char* name);
+
 int main(int argc, char* argv[])
 {
     if (argc < 3) {
         showUsage(argv[0]);
         return 1;
     }
-    std::vector <std::string> sources;
     std::string filename;
+    std::string fileType;
+    bool fileColored = false;
+    float scaleFactor = 1;
+
+    std::vector <std::string> sources;
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
         if ((arg == "-h") || (arg == "--help")) {
@@ -25,31 +29,39 @@ int main(int argc, char* argv[])
         } else if ((arg == "-f") || (arg == "--file")) {
             if (i + 1 < argc) {
                 filename = argv[++i];
-                sources.push_back(filename.substr(0, filename.find('.')+1));
-                sources.push_back(filename.substr(filename.find('.')+1));
+                fileType = filename.substr(filename.rfind('.')+1);
             } else {
                 std::cerr << "--file option requires one argument." << std::endl;
                 return 1;
             }
-        } else {
-            // Later, for other arguments.
-            sources.push_back("");
-            sources.push_back("");
+        } else if ((arg == "-c") || (arg == "--color")) {
+            fileColored = true;
+        } else if ((arg == "-r") || (arg == "--resize")) {
+            if(i + 1 < argc) {
+                scaleFactor = std::stof(argv[++i]);
+            } else {
+                std::cerr << "--resize option requires one argument." << std::endl;
+                return 1;
+            }
         }
     }
     //Error handling?
-    std::cout << sources[0] << " and " << sources[1] << std::endl;
-    Converter c;
-    c.convertPics(sources);
-    std::string output = c.getASCIIString();
-    std::cout << output << std::endl;
+
+    ImageParserFactory imageFactory;
+    // TODO: other arguments!!!
+    ImageParser* imageParser = imageFactory.createImageParser(filename, fileType, fileColored, scaleFactor);
+    imageParser->getASCIIToString();
+    imageParser->saveASCIIToFile("text.txt");
+
     return 0;
 }
 
-void showUsage(std::string name) {
-    std::cerr << "Usage: " << name << " <option(s)> SOURCES"
+void showUsage(const char* name) {
+    std::cerr << "Usage: " << &name << " <option(s)> SOURCES"
               << "Options:\n"
-              << "\t-h,--help\t\tShow this help message\n"
-              << "\t-f,--file FILE NAME\tSpecify the file name"
+              << "\t-h,--help\t\t\t| Show this help message\n"
+              << "\t-f,--file FILE NAME\t| Specify the file name\n"
+              << "\t-c,--color \t\t\t| If image is colored\n"
+              << "\t-r,--resize VALUE\t| Specify the scale between 0 - 1 (eg. 0.5)"
               << std::endl;
 }

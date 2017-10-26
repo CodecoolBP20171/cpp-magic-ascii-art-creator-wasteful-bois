@@ -4,8 +4,11 @@
 
 #include "ParseJPG.h"
 
-ParseJPG::ParseJPG(std::string& fileName, bool& color, float& scale): ImageParser(color, scale), fileName(fileName.c_str()) {
+ParseJPG::ParseJPG(std::string& fileName, bool& color, float& scale)
+        : ImageParser(color, scale), fileName(fileName.c_str()) {
     decodeJPG();
+    if(color) convertToGreyscale();
+
 }
 
 void ParseJPG::decodeJPG() {
@@ -37,7 +40,11 @@ void ParseJPG::decodeJPG() {
     std::cout << njDecode(buffer, static_cast<const int>(result)) << std::endl;
     width =  njGetWidth();
     height = njGetHeight();
-    image = njGetImage();
+    unsigned char *imageRaw = njGetImage();
+
+    for (int i = 0; i < width*height; ++i) {
+        image[i] = imageRaw[i];
+    }
 
     // terminate
     fclose (pFile);
@@ -49,11 +56,7 @@ const std::string ParseJPG::getASCIIToString() {
     std::string returnValue;
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            int red     = image[y * width * 3 + x * 3 + 0];
-            int green   = image[y * width * 3 + x * 3 + 1];
-            int blue    = image[y * width * 3 + x * 3 + 2];
-            int lightness = (0.3 * red) + (0.59 * green) + (0.11 * blue);
-            returnValue += selectCharacter(lightness);
+            returnValue += selectCharacter(image[y * width * 3 + x * 3 + 0]);
         }
         returnValue += "\n";
     }
@@ -61,7 +64,13 @@ const std::string ParseJPG::getASCIIToString() {
 }
 
 void ParseJPG::convertToGreyscale() {
-
+    for (int pixel = 0; pixel < width*height; ++pixel) {
+        int red     = image[pixel + 0];
+        int green   = image[pixel + 1];
+        int blue    = image[pixel + 2];
+        int lightness = (int) floor((0.3 * red) + (0.59 * green) + (0.11 * blue));
+        image[pixel + 0] = lightness;
+    }
 }
 
 void ParseJPG::resize(float &scale) {

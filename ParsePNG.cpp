@@ -7,6 +7,7 @@
 ParsePNG::ParsePNG(std::string& fileName, bool& color, float& scale)
         : ImageParser(color, scale), fileName(fileName.c_str()) {
     decodePNG();
+    if (color) convertToGreyscale();
 }
 
 void ParsePNG::decodePNG() {
@@ -23,11 +24,7 @@ const std::string ParsePNG::getASCIIToString() {
     std::string returnValue;
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            int red     = image[y * width * 4 + x * 4 + 0];
-            int green   = image[y * width * 4 + x * 4 + 1];
-            int blue    = image[y * width * 4 + x * 4 + 2];
-            int lightness = (0.3 * red) + (0.59 * green) + (0.11 * blue);
-            returnValue += selectCharacter(lightness);
+            returnValue += selectCharacter(image[y * width * 4 + x * 4]);
         }
         returnValue += "\n";
     }
@@ -35,7 +32,13 @@ const std::string ParsePNG::getASCIIToString() {
 }
 
 void ParsePNG::convertToGreyscale() {
-
+    for (int pixel = 0; pixel < width*height; ++pixel) {
+        int red     = image[pixel + 0];
+        int green   = image[pixel + 1];
+        int blue    = image[pixel + 2];
+        int lightness = (int) floor((0.3 * red) + (0.59 * green) + (0.11 * blue));
+        image[pixel + 0] = lightness;
+    }
 }
 
 void ParsePNG::resize(float &scale) {

@@ -6,6 +6,7 @@
 #define CPP_MAGIC_ASCII_ART_CREATOR_WASTEFUL_BOIS_IMAGEPARSER_H
 
 #include <fstream>
+#include <math.h>
 #include <string>
 #include "Ascii.h"
 #include "ImageParserExceptions.h"

@@ -16,6 +16,8 @@ int main(int argc, char* argv[])
     std::string fileType;
     bool fileColored = false;
     float scaleFactor = 1;
+    bool saveToFile = false;
+    std::string newFileName;
 
     std::vector <std::string> sources;
     for (int i = 1; i < argc; ++i) {
@@ -40,6 +42,14 @@ int main(int argc, char* argv[])
                 std::cerr << "--resize option requires one argument." << std::endl;
                 return 1;
             }
+        } else if ((arg == "-w") || (arg == "--write")) {
+            if (i + 1 < argc) {
+                saveToFile = true;
+                newFileName = argv[++i];
+            } else {
+                std::cerr << "--write option requires one argument." << std::endl;
+                return 1;
+            }
         }
     }
 
@@ -61,10 +71,12 @@ int main(int argc, char* argv[])
         return 1;
     }
     std::cout << imageParser->getASCIIToString();
-    try {
-        imageParser->saveASCIIToFile("../test.txt");
-    } catch (parser::BadFileWrite& e) {
-        std::cerr << e.what() << std::endl;
+    if (saveToFile) {
+        try {
+            imageParser->saveASCIIToFile(newFileName);
+        } catch (parser::BadFileWrite &e) {
+            std::cerr << e.what() << std::endl;
+        }
     }
     delete imageParser;
 
@@ -74,9 +86,10 @@ int main(int argc, char* argv[])
 void showUsage(const char* name) {
     std::cerr << "Usage: " << name << " <option(s)>\n"
               << "Options:\n"
-              << "\t-h,--help\t\t\t| Show this help message\n"
-              << "\t-f,--file FILE NAME\t| Specify the file name\n"
-              << "\t-c,--color \t\t\t| If image is colored\n"
-              << "\t-r,--resize VALUE\t| Specify the scale between 0 - 1 (eg. 0.5)"
+              << "\t-h,--help\t\t\t\t| Show this help message\n"
+              << "\t-f,--file FILE NAME\t\t| Specify the file name\tREQUIRED\n"
+              << "\t-c,--color \t\t\t\t| If image is colored\n"
+              << "\t-r,--resize VALUE\t\t| Specify the scale between 0 - 1 (eg. 0.5)\n"
+              << "\t-w,--write FILE NAME\t| Write the ascii art to the specified file"
               << std::endl;
 }

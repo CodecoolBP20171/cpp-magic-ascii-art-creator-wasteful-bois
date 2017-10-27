@@ -23,8 +23,6 @@ protected:
     const bool color;
     const float scale;
     const char selectCharacter(const int &lightness);
-
-private:
     virtual void convertToGreyscale() = 0;
     virtual void resize() = 0;
 };
